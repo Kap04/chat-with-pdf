@@ -15,12 +15,31 @@ import { adminDb } from "../firebaseAdmin"
 import { auth } from "@clerk/nextjs/server"
 import { split } from "postcss/lib/list";
 
-const model = new ChatOpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-    modelName: "gpt-4o"
-})
+import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
 
-export const indexName = "pdf-embeds"
+// Initialize the model
+const model = new GoogleGenerativeAIEmbeddings({
+  apiKey: process.env.GEMINI_API_KEY,  // Use environment variable
+  modelName: "embedding-001",
+});
+
+// You can keep this function if you need to test the embeddings
+async function testEmbeddings() {
+  // Embed a single query
+  const res = await model.embedQuery(
+    "What would be a good company name for a company that makes colorful socks?"
+  );
+  console.log({ res });
+
+  // Embed multiple documents
+  const documentRes = await model.embedDocuments(["Hello world", "Bye bye"]);
+  console.log({ documentRes });
+}
+
+// Optionally run the test function
+// testEmbeddings();
+
+export const indexName = "pdfembeddings"
 
 export async function generateDocs(docId: string) {
     const { userId } = await auth();
@@ -75,7 +94,10 @@ export async function generateEmbeddingsInPineconeVectorStore(docId: string) {
 
     console.log(" --- Generating embeddings... --- ");
 
-    const embeddings = new OpenAIEmbeddings();
+    const embeddings = new GoogleGenerativeAIEmbeddings({
+        apiKey: process.env.GEMINI_API_KEY,
+        modelName: "embedding-001",
+    });
 
     const index = await pineconeClient.index(indexName)
     const nameSpaceAlreadyExists = await nameSpaceExists(index, docId);
