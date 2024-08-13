@@ -12,6 +12,7 @@ import { collection, orderBy, query } from "firebase/firestore"
 import { db } from "@/firebase"
 import { askQuestion } from "@/actions/askQuestion"
 import ChatMessage from "./ChatMessage"
+import { useToast } from "./ui/use-toast"
 
 export type Message = {
     id?: string;
@@ -24,10 +25,12 @@ export type Message = {
 function Chat({ id }: { id: string }) {
 
     const { user } = useUser();
+    const { toast} = useToast();
     const [input, setInput] = useState("");
     const [messages, setMessages] = useState<Message[]>([])
     const [isPending, startTransition] = useTransition();
     const bottomOfChatRef = useRef<HTMLDivElement>(null)
+
 
     const [snapshot, loading, error] = useCollection(
         user &&
@@ -39,9 +42,9 @@ function Chat({ id }: { id: string }) {
 
     useEffect(() => {
         bottomOfChatRef.current?.scrollIntoView({
-            behavior:"smooth"
+            behavior: "smooth"
         })
-    },[messages])
+    }, [messages])
 
     useEffect(() => {
         if (!snapshot) return;
@@ -53,7 +56,7 @@ function Chat({ id }: { id: string }) {
             return
         }
 
-        const newMessage = snapshot.docs.map(doc => {
+        const newMessage = snapshot.docs.map((doc) => {
             const { role, message, createdAt } = doc.data();
 
             return {
@@ -93,7 +96,11 @@ function Chat({ id }: { id: string }) {
             const { success, message } = await askQuestion(id, q)
 
             if (!success) {
-                //toast...
+                toast({
+                    variant:"destructive",
+                    title:"Error",
+                    description:message
+                })
                 setMessages((prev) =>
                     prev.slice(0, prev.length - 1).concat([
                         {
@@ -119,23 +126,25 @@ function Chat({ id }: { id: string }) {
                     </div>
                 ) : (
                     <div className="p-5">
-                        {messages.length === 0 && (
-                            <ChatMessage key={"placeholder"} message={{
-                                role:"ai",
-                                message:"Ask me anything about the document!",
-                                createdAt:new Date(),
-                            }}
-                            />
-                        )}
+                      {messages.length === 0 && (
+                        <ChatMessage
+                          key={"placeholder"}
+                          message={{
+                            role: "ai",
+                            message: "Ask me anything about the document!",
+                            createdAt: new Date(),
+                          }}
+                        />
+                      )}
+          
+                      {messages.map((message, index) => (
+                        <ChatMessage key={index} message={message} />
+                      ))}
+          
+                      <div ref={bottomOfChatRef} />
                     </div>
-                )}
-                {messages.map((message) => (
-                    <div key={message.id}>
-                        <p>{message.message}</p>
-                    </div>
-                ))}
-
-                <div ref={bottomOfChatRef}/>
+                  )}
+                
 
             </div>
             <form onSubmit={handleSubmit} className="flex sticky bottom-0 space-x-2 p-5 bg-indigo-600/75">

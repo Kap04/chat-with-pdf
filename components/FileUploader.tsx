@@ -1,14 +1,18 @@
 "use client";
 
+import useSubscription from "@/hooks/useSubscription";
 import useUpload, { StatusText } from "@/hooks/useUpload";
 import { CheckCircleIcon, CircleArrowDown, HammerIcon, RocketIcon, SaveIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import { useDropzone } from 'react-dropzone';
+import { toast, useToast } from "./ui/use-toast";
 
 function FileUploader() {
   const { progress, status, fileId, handleUpload } = useUpload();
+  const { isOverFileLimit , filesLoading} = useSubscription()
   const router = useRouter();
+  const {toast} = useToast()
 
   useEffect(() => {
     if (fileId) {
@@ -21,7 +25,16 @@ function FileUploader() {
     // Do something with the files
     const file = acceptedFiles[0];
     if (file) {
-      await handleUpload(file);
+      if(!isOverFileLimit && !filesLoading){
+
+        await handleUpload(file);
+      }else{
+        toast({
+          variant:"destructive",
+          title:"Free Plan File Limit Reached",
+          description:"You have reached the maximum number of files allowed. Please upgrade to add more documents"
+        })
+      }
     }
     console.log(file);
   }, [handleUpload]);
