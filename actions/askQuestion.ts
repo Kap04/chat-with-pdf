@@ -7,8 +7,8 @@ import { generatelangchainCompletion } from "@/lib/langchain";
 import { auth } from "@clerk/nextjs/server";
 
 //number of docs the user is allowed to have 
-export const PRO_LIMIT = 20;
- export const FREE_LIMIT= 2;
+const PRO_LIMIT = 20;
+const FREE_LIMIT= 2;
 
 
 export async function askQuestion(id: string, question: string) {
