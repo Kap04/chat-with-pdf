@@ -1,9 +1,7 @@
 "use client";
 
-
 import { generateEmbeddings } from "@/actions/generateEmbeddings";
 import { db, storage } from "@/firebase";
-import { generateDocs } from "@/lib/langchain";
 import { useUser } from "@clerk/nextjs";
 import { doc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
@@ -69,9 +67,8 @@ function useUpload() {
         });
 
         setStatus(StatusText.GENERATING);
-        await generateEmbeddings(fileIdToUploadTo)
-        
-        //generate embeddings... 
+        await generateEmbeddings(fileIdToUploadTo);
+
         setFileId(fileIdToUploadTo);
       }
     );

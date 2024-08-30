@@ -56,7 +56,7 @@ async function fetchMessagesFromDb(docId: string) {
         .doc(docId)
         .collection("chat")
         .orderBy("createdAt", "desc")
-        // .limit(LIMIT)
+        .limit(LIMIT)
         .get()
 
     const chatHistory = chats.docs.map((doc) => 

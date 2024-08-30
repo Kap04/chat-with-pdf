@@ -10,12 +10,13 @@ const firebaseConfig = {
     messagingSenderId: "26855541245",
     appId: "1:26855541245:web:efab9237bc471ac7e17194",
     measurementId: "G-1CS11EJNTR"
+    
 };
 
-const app = getApps().length === 0 ? initializeApp(firebaseConfig):getApp()
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp()
 const db = getFirestore(app);
 const storage = getStorage(app)
 
-export {db, storage}
+export { db, storage }
 
 

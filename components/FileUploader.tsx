@@ -37,7 +37,7 @@ function FileUploader() {
       }
     }
     console.log(file);
-  }, [handleUpload]);
+  }, [handleUpload , isOverFileLimit, filesLoading , toast]);
 
   const statusIcons: {
     [key in StatusText]: JSX.Element;
