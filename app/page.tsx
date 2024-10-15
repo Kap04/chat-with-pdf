@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { BookOpen, FileText, MessageCircle, Upload, Globe, Zap, BrainCog, Eye, ServerCog, MonitorSmartphone } from "lucide-react"
 import Link from "next/link"
 import { RainbowButton } from "@/components/ui/rainbow-button"
@@ -49,8 +48,8 @@ export default function LandingPage() {
         <section className="relative flex items-center -mt-10 justify-center min-h-screen bg-white overflow-hidden">
           <AnimatedGridPattern
             className={cn(
-              "bg-gradient-to-b", // Define the gradient direction
-    "from-transparent via-white/30 to-transparent",
+              "bg-gradient-to-b",
+              "from-transparent via-white/30 to-transparent",
               "inset-x-0 inset-y-[-30%] w-full h-[200%] skew-y-12",
             )}
             width={70}
@@ -74,7 +73,7 @@ export default function LandingPage() {
                   </span>
                 </AnimatedGradientText>
                 <p className="mx-auto max-w-[800px] pt-4 text-gray-600 md:text-xl">
-                  Chat-with-PDF is a simple and powerful tool that lets you easily interact with any PDF. Just upload your document, ask questions, and get instant, accurate answers from the content. It's a quick way to understand reports, research, or any text-heavy files without the hassle of reading through everything.
+                  Chat-with-PDF is a simple and powerful tool that lets you easily interact with any PDF. Just upload your document, ask questions, and get instant, accurate answers from the content. It&apos;s a quick way to understand reports, research, or any text-heavy files without the hassle of reading through everything.
                 </p>
               </div>
               <div className="space-x-4 pt-4">
