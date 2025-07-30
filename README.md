@@ -1,5 +1,5 @@
-````markdown
-# Chat-with-PDF
+
+## Chat-with-PDF
 
 **Live Demo:** https://chat-with-pdf-usai.vercel.app/
 
@@ -41,7 +41,7 @@ A Next.js + TypeScript application that lets users interact with their PDF docum
    ```bash
    git clone https://github.com/yourusername/chat-with-pdf.git
    cd chat-with-pdf
-````
+
 
 2. Install dependencies:
 
@@ -63,25 +63,10 @@ A Next.js + TypeScript application that lets users interact with their PDF docum
 
 ---
 
-## 📂 Project Structure
-
-```
-/ ├ Pages/        ← Next.js routes  ├ Components/   ← React UI components  ├ lib/          ← API clients + helpers  ├ styles/       ← Global CSS  └ public/       ← Static assets
-```
-
----
-
-## 🤝 Contributing
-
-This is a personal project. For questions or feedback, feel free to reach out!
-
----
-
 ## 🎯 Contact
 
 **Krishna Patel**
-Email: [krishna.patel@example.com](mailto:krishna.patel@example.com)
-LinkedIn: linkedin.com/in/krishna-patel
+Email: [kap22052004@gmail.com](mailto:kap22052004@gmail.com)
+LinkedIn: [linkedin.com/in/krishna-patel](https://www.linkedin.com/in/krishna-patel-248883290/)
 
-```
-```
+
