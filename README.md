@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+````markdown
+# Chat-with-PDF
 
-## Getting Started
+**Live Demo:** https://chat-with-pdf-usai.vercel.app/
 
-First, run the development server:
+A Next.js + TypeScript application that lets users interact with their PDF documents using AI. Upload a PDF, convert it to embeddings for Retrieval-Augmented Generation (RAG), and chat with the content seamlessly.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🚀 Features
+
+- **PDF Upload & Parsing:** Drag-and-drop or select PDFs for processing.  
+- **Embeddings & VectorDB:** Convert document text into embeddings and store in a vector database.  
+- **AI Chat Interface:** Ask questions, get context-aware answers powered by RAG.  
+- **Stripe Integration:** Secure payment flow for premium usage tiers.  
+- **Hosted & Scalable:** Deployed on Vercel for fast, reliable performance.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js (TypeScript)  
+- **AI/Embeddings:** OpenAI API + Vector Database (e.g., Pinecone)  
+- **Payments:** Stripe  
+- **Deployment:** Vercel  
+
+---
+
+## 📐 Architecture
+
+1. **Upload:** User uploads PDF → server parses text pages.  
+2. **Embeddings:** Text chunks sent to OpenAI for embeddings → stored in VectorDB.  
+3. **Query:** User chat prompts → retrieves relevant vectors → generates AI response.  
+4. **Payment:** Stripe checkout for access control and usage tracking.
+
+---
+
+## 🔧 Quick Start
+
+1. Clone repository:
+   ```bash
+   git clone https://github.com/yourusername/chat-with-pdf.git
+   cd chat-with-pdf
+````
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+3. Configure environment (.env):
+
+   ```env
+   NEXT_PUBLIC_OPENAI_API_KEY=<your_key>
+   VECTOR_DB_ENDPOINT=<your_vector_db>
+   STRIPE_SECRET_KEY=<your_stripe_key>
+   ```
+4. Run locally:
+
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## 📂 Project Structure
+
+```
+/ ├ Pages/        ← Next.js routes  ├ Components/   ← React UI components  ├ lib/          ← API clients + helpers  ├ styles/       ← Global CSS  └ public/       ← Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🤝 Contributing
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This is a personal project. For questions or feedback, feel free to reach out!
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🎯 Contact
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Krishna Patel**
+Email: [krishna.patel@example.com](mailto:krishna.patel@example.com)
+LinkedIn: linkedin.com/in/krishna-patel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+```
